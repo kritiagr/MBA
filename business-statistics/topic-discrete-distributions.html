@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discrete Probability Distributions — Business Statistics</title>
+<style>
+:root{
+  --bg:#0f172a;--surface:#fff;--panel:#f8fafc;--ink:#0f172a;--muted:#64748b;
+  --brand:#4f46e5;--brand-dark:#3730a3;--accent:#06b6d4;--ok:#16a34a;--warn:#f59e0b;
+  --danger:#dc2626;--card:#fff;--border:#e2e8f0;--shadow:0 4px 6px -1px rgba(0,0,0,0.07),0 2px 4px -1px rgba(0,0,0,0.05);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;color:var(--ink);background:#f1f5f9;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+header.site{background:linear-gradient(135deg,#4f46e5 0%,#06b6d4 100%);color:#fff;padding:48px 0 32px}
+header.site h1{margin:0 0 8px;font-size:2.4em;letter-spacing:-0.02em}
+header.site p{margin:0;opacity:0.92;max-width:680px;font-size:1.05em}
+nav.crumbs{background:var(--panel);border-bottom:1px solid var(--border);padding:12px 0;font-size:0.92em;color:var(--muted)}
+nav.crumbs a{color:var(--brand)}
+main{padding:36px 0 80px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:20px;border:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.tile{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;border:1px solid var(--border);transition:transform .15s,box-shadow .15s;display:block;color:inherit}
+.tile:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,0.12);text-decoration:none}
+.tile h3{margin:0 0 8px;font-size:1.18em}
+.tile .code{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:0.78em;color:var(--muted);margin-bottom:10px}
+.tile p{margin:8px 0 0;color:var(--muted);font-size:0.94em}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:0.78em;font-weight:600;background:var(--panel);border:1px solid var(--border);color:var(--ink);margin-right:6px}
+.tag-quiz{background:#dbeafe;color:#1e3a8a;border-color:#bfdbfe}
+.tag-short{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.tag-long{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.tag-paper{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.section-title{margin:32px 0 12px;font-size:1.45em;color:var(--ink);letter-spacing:-0.01em}
+h2.topic{margin:0 0 6px;font-size:1.55em;letter-spacing:-0.01em}
+.topic-meta{color:var(--muted);font-size:0.92em;margin-bottom:18px}
+.simple{font-size:1.05em;background:#eff6ff;padding:18px;border-left:4px solid var(--brand);border-radius:8px;margin-bottom:18px}
+.keypoints ul{margin:0;padding-left:22px}
+.keypoints li{margin:4px 0}
+.quiz{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:16px;margin:12px 0}
+.quiz .q{font-weight:600;margin-bottom:8px}
+.quiz .options{list-style:none;padding:0;margin:0 0 6px}
+.quiz .options li{padding:8px 12px;background:#fff;border:1px solid var(--border);border-radius:6px;margin:4px 0;cursor:pointer;font-size:0.96em;transition:background .12s}
+.quiz .options li:hover{background:#eef2ff}
+.quiz .options li.correct{background:#dcfce7;border-color:#86efac}
+.quiz .options li.wrong{background:#fee2e2;border-color:#fca5a5}
+.quiz .explain{color:var(--muted);font-size:0.9em;margin-top:6px;display:none}
+.quiz .explain.show{display:block}
+details{background:var(--panel);border-radius:8px;padding:0;margin:8px 0;border:1px solid var(--border)}
+details summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-size:1.2em;color:var(--muted)}
+details[open] summary::after{content:"−"}
+details .ans{padding:0 16px 14px;color:#334155}
+.long{background:#fefce8;border-left:4px solid var(--warn);border-radius:8px;padding:18px;margin:12px 0;line-height:1.7}
+.files-table{width:100%;border-collapse:collapse;margin:8px 0}
+.files-table th,.files-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:0.95em}
+.files-table th{background:var(--panel);color:var(--muted);font-weight:600;font-size:0.82em;text-transform:uppercase;letter-spacing:0.04em}
+.files-table tr:hover{background:#f8fafc}
+.kind{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:0.75em;color:var(--muted);font-weight:600}
+.fk-handout{background:#dbeafe;color:#1e3a8a;border-color:#bfdbfe}
+.fk-slide{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.fk-paper{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.fk-recording{background:#ede9fe;color:#5b21b6;border-color:#ddd6fe}
+.fk-exercise,.fk-data{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.toc{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px;margin:0 0 24px}
+.toc h4{margin:0 0 8px;font-size:0.92em;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted)}
+.toc ol{margin:0;padding-left:20px}
+.toc li{margin:3px 0}
+.searchbox{width:100%;padding:12px 16px;border-radius:8px;border:1px solid var(--border);font-size:1em;margin-bottom:16px;background:#fff}
+.searchbox:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(79,70,229,0.12)}
+.btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 18px;border-radius:8px;font-weight:600;transition:background .12s}
+.btn:hover{background:var(--brand-dark);text-decoration:none;color:#fff}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--panel)}
+.eval-table{width:100%;border-collapse:collapse}
+.eval-table th,.eval-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:0.95em;text-align:left}
+.eval-table th{background:var(--panel);font-size:0.82em;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted)}
+footer{padding:24px 0;color:var(--muted);font-size:0.88em;text-align:center;border-top:1px solid var(--border);margin-top:40px;background:#fff}
+.pill{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:4px 12px;font-size:0.84em;color:var(--muted);margin:2px 4px 2px 0}
+.fileset-summary{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.fileset-summary .pill strong{color:var(--ink)}
+@media (max-width:700px){
+  header.site h1{font-size:1.85em}
+  .container{padding:0 16px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="crumbs"><div class="container"><a href="../index.html">MBA Study Hub</a> › <a href="index.html">Business Statistics</a> › Topic</div></nav>
+<header class="site"><div class="container">
+  <p style="margin:0;opacity:.92">Session 6 · MBA CC ZG501</p>
+  <h1>Discrete Probability Distributions</h1>
+</div></header>
+<main><div class="container">
+  <div class="card">
+    <h3 class="section-title" style="margin-top:0">In Simple Language</h3>
+    <div class="simple">A discrete probability distribution lists each possible value of a discrete random variable X and its probability P(X=x), with the probabilities summing to 1. Expected value E(X) = Σ x·P(x) is the long-run mean; variance σ² = Σ (x − μ)²·P(x). Two workhorses are: Binomial — number of successes in n independent trials with constant success probability p; mean = np, variance = np(1−p). Poisson — number of events in a fixed interval at average rate λ; mean = variance = λ. Use binomial when n is fixed and we count successes; use Poisson when events arrive over time/space at a constant average rate.</div>
+
+    <h3 class="section-title">Key Concepts</h3>
+    <div class="keypoints"><ul><li>Discrete random variable; PMF rules (0 ≤ P(x) ≤ 1, ΣP(x) = 1)</li><li>Expected value, variance and standard deviation of a discrete RV</li><li>Binomial distribution: n, p; assumptions (fixed n, independent, constant p, 2 outcomes)</li><li>Mean = np, Variance = np(1−p)</li><li>Poisson distribution: λ events per unit; mean = variance = λ</li><li>Binomial → Poisson approximation when n large and p small</li></ul></div>
+
+    <h3 class="section-title"><span class="tag tag-quiz">Quiz</span> Practice Quiz</h3>
+    <div class="quiz" data-correct="0"><div class="q">Q1. For Binomial(n=10, p=0.3), the mean is:</div><ul class="options"><li>3</li><li>2.1</li><li>0.3</li><li>10</li></ul><div class="explain"><b>Explanation:</b> μ = np = 10 × 0.3 = 3.</div></div>
+<div class="quiz" data-correct="1"><div class="q">Q2. Which scenario fits a Poisson?</div><ul class="options"><li>10 coin tosses</li><li>Number of customer arrivals in an hour</li><li>Heights of students</li><li>Pass/fail of an exam</li></ul><div class="explain"><b>Explanation:</b> Events occurring at a constant average rate in a fixed interval = Poisson.</div></div>
+<div class="quiz" data-correct="1"><div class="q">Q3. Variance of Poisson(λ = 4) is:</div><ul class="options"><li>2</li><li>4</li><li>8</li><li>16</li></ul><div class="explain"><b>Explanation:</b> Poisson mean and variance are both λ.</div></div>
+<div class="quiz" data-correct="3"><div class="q">Q4. Which is NOT a binomial assumption?</div><ul class="options"><li>Fixed n</li><li>Constant p</li><li>Independent trials</li><li>Time-based arrival rate</li></ul><div class="explain"><b>Explanation:</b> Arrival rate over time is Poisson, not binomial.</div></div>
+
+    <h3 class="section-title"><span class="tag tag-short">Short Answers</span> Short-Answer Q&amp;A</h3>
+    <details><summary>State the conditions for a Binomial distribution.</summary><div class='ans'>Fixed number of trials n; each trial independent; only two outcomes (success/failure); constant probability p of success on every trial.</div></details><details><summary>Mean and variance of Binomial and Poisson.</summary><div class='ans'>Binomial(n, p): μ = np, σ² = np(1−p). Poisson(λ): μ = σ² = λ.</div></details><details><summary>When can we approximate Binomial by Poisson?</summary><div class='ans'>When n is large (≥ 20) and p is small (≤ 0.05), with λ = np.</div></details><details><summary>Give a business example of each.</summary><div class='ans'>Binomial: number of defective items in a batch of 50. Poisson: number of customer complaints received per day.</div></details>
+
+    <h3 class="section-title"><span class="tag tag-long">Long Answer</span> 150-Word Answer</h3>
+    <div class="long">Discrete probability distributions describe random variables whose outcomes are countable. Their probability mass function (PMF) lists every possible value and the probability it occurs, subject to two rules — every probability lies between 0 and 1, and the probabilities sum to 1. From the PMF we derive the expected value E(X) = Σ x·P(x), which represents the long-run average outcome, and the variance σ² = Σ (x − μ)²·P(x), which measures how much outcomes typically deviate from the mean. The binomial distribution applies when we run n identical, independent trials, each with two outcomes (success/failure) and a constant probability p of success — for instance the number of defective items in a sample of 50. Its mean is np and variance is np(1−p). The Poisson distribution counts the number of events occurring in a fixed time or space when events happen independently at a constant average rate λ — for instance the number of calls a call-centre receives per hour. Uniquely, its mean and variance both equal λ. When n is large and p is small the binomial is well approximated by a Poisson with λ = np. These distributions underpin quality control charts, queuing models, reliability engineering and operational planning, letting managers translate uncertain counts into actionable probabilities and expected costs.</div>
+
+    <div style="margin-top:24px;display:flex;gap:10px;justify-content:space-between">
+      <a class="btn btn-ghost" href="topic-probability.html">← Previous</a><a class="btn" href="index.html">↑ Course home</a><a class="btn btn-ghost" href="topic-normal-distribution.html">Next →</a>
+    </div>
+  </div>
+</div></main>
+
+<footer><div class="container">Auto-generated by MBA Study Hub generator — last built 19 May 2026, 07:57 · <a href="../index.html">Back to Hub</a></div></footer>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{
+  const correct=parseInt(q.dataset.correct,10);
+  const explain=q.querySelector('.explain');
+  q.querySelectorAll('.options li').forEach((opt,idx)=>{
+    opt.addEventListener('click',()=>{
+      q.querySelectorAll('.options li').forEach(o=>{o.classList.remove('correct','wrong')});
+      if(idx===correct){opt.classList.add('correct')}
+      else{opt.classList.add('wrong'); q.querySelectorAll('.options li')[correct].classList.add('correct')}
+      if(explain){explain.classList.add('show')}
+    });
+  });
+});
+const sb=document.getElementById('search');
+if(sb){
+  sb.addEventListener('input',()=>{
+    const q=sb.value.trim().toLowerCase();
+    document.querySelectorAll('[data-search]').forEach(el=>{
+      const t=(el.dataset.search||'').toLowerCase();
+      el.style.display = (!q||t.includes(q))?'':'none';
+    });
+  });
+}
+</script>
+</body></html>

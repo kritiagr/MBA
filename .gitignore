@@ -1,0 +1,6 @@
+.manifest.json
+rebuild.cmd
+rebuild_silent.cmd
+_generator/
+.DS_Store
+Thumbs.db

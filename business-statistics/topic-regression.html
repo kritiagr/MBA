@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simple Linear Regression — Business Statistics</title>
+<style>
+:root{
+  --bg:#0f172a;--surface:#fff;--panel:#f8fafc;--ink:#0f172a;--muted:#64748b;
+  --brand:#4f46e5;--brand-dark:#3730a3;--accent:#06b6d4;--ok:#16a34a;--warn:#f59e0b;
+  --danger:#dc2626;--card:#fff;--border:#e2e8f0;--shadow:0 4px 6px -1px rgba(0,0,0,0.07),0 2px 4px -1px rgba(0,0,0,0.05);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;color:var(--ink);background:#f1f5f9;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+header.site{background:linear-gradient(135deg,#4f46e5 0%,#06b6d4 100%);color:#fff;padding:48px 0 32px}
+header.site h1{margin:0 0 8px;font-size:2.4em;letter-spacing:-0.02em}
+header.site p{margin:0;opacity:0.92;max-width:680px;font-size:1.05em}
+nav.crumbs{background:var(--panel);border-bottom:1px solid var(--border);padding:12px 0;font-size:0.92em;color:var(--muted)}
+nav.crumbs a{color:var(--brand)}
+main{padding:36px 0 80px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:20px;border:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.tile{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;border:1px solid var(--border);transition:transform .15s,box-shadow .15s;display:block;color:inherit}
+.tile:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,0.12);text-decoration:none}
+.tile h3{margin:0 0 8px;font-size:1.18em}
+.tile .code{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:0.78em;color:var(--muted);margin-bottom:10px}
+.tile p{margin:8px 0 0;color:var(--muted);font-size:0.94em}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:0.78em;font-weight:600;background:var(--panel);border:1px solid var(--border);color:var(--ink);margin-right:6px}
+.tag-quiz{background:#dbeafe;color:#1e3a8a;border-color:#bfdbfe}
+.tag-short{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.tag-long{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.tag-paper{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.section-title{margin:32px 0 12px;font-size:1.45em;color:var(--ink);letter-spacing:-0.01em}
+h2.topic{margin:0 0 6px;font-size:1.55em;letter-spacing:-0.01em}
+.topic-meta{color:var(--muted);font-size:0.92em;margin-bottom:18px}
+.simple{font-size:1.05em;background:#eff6ff;padding:18px;border-left:4px solid var(--brand);border-radius:8px;margin-bottom:18px}
+.keypoints ul{margin:0;padding-left:22px}
+.keypoints li{margin:4px 0}
+.quiz{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:16px;margin:12px 0}
+.quiz .q{font-weight:600;margin-bottom:8px}
+.quiz .options{list-style:none;padding:0;margin:0 0 6px}
+.quiz .options li{padding:8px 12px;background:#fff;border:1px solid var(--border);border-radius:6px;margin:4px 0;cursor:pointer;font-size:0.96em;transition:background .12s}
+.quiz .options li:hover{background:#eef2ff}
+.quiz .options li.correct{background:#dcfce7;border-color:#86efac}
+.quiz .options li.wrong{background:#fee2e2;border-color:#fca5a5}
+.quiz .explain{color:var(--muted);font-size:0.9em;margin-top:6px;display:none}
+.quiz .explain.show{display:block}
+details{background:var(--panel);border-radius:8px;padding:0;margin:8px 0;border:1px solid var(--border)}
+details summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-size:1.2em;color:var(--muted)}
+details[open] summary::after{content:"−"}
+details .ans{padding:0 16px 14px;color:#334155}
+.long{background:#fefce8;border-left:4px solid var(--warn);border-radius:8px;padding:18px;margin:12px 0;line-height:1.7}
+.files-table{width:100%;border-collapse:collapse;margin:8px 0}
+.files-table th,.files-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:0.95em}
+.files-table th{background:var(--panel);color:var(--muted);font-weight:600;font-size:0.82em;text-transform:uppercase;letter-spacing:0.04em}
+.files-table tr:hover{background:#f8fafc}
+.kind{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:0.75em;color:var(--muted);font-weight:600}
+.fk-handout{background:#dbeafe;color:#1e3a8a;border-color:#bfdbfe}
+.fk-slide{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.fk-paper{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.fk-recording{background:#ede9fe;color:#5b21b6;border-color:#ddd6fe}
+.fk-exercise,.fk-data{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.toc{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px;margin:0 0 24px}
+.toc h4{margin:0 0 8px;font-size:0.92em;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted)}
+.toc ol{margin:0;padding-left:20px}
+.toc li{margin:3px 0}
+.searchbox{width:100%;padding:12px 16px;border-radius:8px;border:1px solid var(--border);font-size:1em;margin-bottom:16px;background:#fff}
+.searchbox:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(79,70,229,0.12)}
+.btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 18px;border-radius:8px;font-weight:600;transition:background .12s}
+.btn:hover{background:var(--brand-dark);text-decoration:none;color:#fff}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--panel)}
+.eval-table{width:100%;border-collapse:collapse}
+.eval-table th,.eval-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:0.95em;text-align:left}
+.eval-table th{background:var(--panel);font-size:0.82em;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted)}
+footer{padding:24px 0;color:var(--muted);font-size:0.88em;text-align:center;border-top:1px solid var(--border);margin-top:40px;background:#fff}
+.pill{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:4px 12px;font-size:0.84em;color:var(--muted);margin:2px 4px 2px 0}
+.fileset-summary{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.fileset-summary .pill strong{color:var(--ink)}
+@media (max-width:700px){
+  header.site h1{font-size:1.85em}
+  .container{padding:0 16px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="crumbs"><div class="container"><a href="../index.html">MBA Study Hub</a> › <a href="index.html">Business Statistics</a> › Topic</div></nav>
+<header class="site"><div class="container">
+  <p style="margin:0;opacity:.92">Session 15 · MBA CC ZG501</p>
+  <h1>Simple Linear Regression</h1>
+</div></header>
+<main><div class="container">
+  <div class="card">
+    <h3 class="section-title" style="margin-top:0">In Simple Language</h3>
+    <div class="simple">Simple linear regression fits a straight line ŷ = b₀ + b₁x to model how one dependent variable y depends on one independent variable x. The slope b₁ is the expected change in y for a one-unit change in x; the intercept b₀ is the predicted y when x = 0. Coefficients are estimated by ordinary least squares (OLS), which minimises the sum of squared residuals. The coefficient of determination R² (= SSR/SST) is the proportion of variation in y explained by x; the standard error of the estimate s_yx measures typical prediction error. Significance of the slope is tested using t = b₁ / SE(b₁). Assumptions: linearity, independence, normality and constant variance of residuals (LINE).</div>
+
+    <h3 class="section-title">Key Concepts</h3>
+    <div class="keypoints"><ul><li>Scatter plot, covariance, correlation r (−1 to +1)</li><li>Least-squares line ŷ = b₀ + b₁x; b₁ = r·(s_y/s_x); b₀ = ȳ − b₁x̄</li><li>Sum of squares: SST = SSR + SSE; R² = SSR/SST</li><li>Standard error of the estimate s_yx</li><li>Inference: t-test for slope; confidence interval for slope</li><li>Assumptions (LINE): Linearity, Independence, Normality, Equal variance</li><li>Prediction vs confidence intervals for the response</li></ul></div>
+
+    <h3 class="section-title"><span class="tag tag-quiz">Quiz</span> Practice Quiz</h3>
+    <div class="quiz" data-correct="1"><div class="q">Q1. R² = 0.81 means:</div><ul class="options"><li>81% of x explains y</li><li>81% of the variation in y is explained by x</li><li>Correlation is 0.81</li><li>Slope is 0.81</li></ul><div class="explain"><b>Explanation:</b> R² is the proportion of y-variation explained by the model.</div></div>
+<div class="quiz" data-correct="1"><div class="q">Q2. OLS chooses coefficients that minimise:</div><ul class="options"><li>Σ |residuals|</li><li>Σ residuals²</li><li>Σ residuals</li><li>Σ y²</li></ul><div class="explain"><b>Explanation:</b> Least squares minimises the sum of squared residuals.</div></div>
+<div class="quiz" data-correct="0"><div class="q">Q3. If the slope b₁ is not significantly different from zero:</div><ul class="options"><li>x and y are unrelated linearly</li><li>Model perfectly fits</li><li>Use a larger α</li><li>Prediction is exact</li></ul><div class="explain"><b>Explanation:</b> Failing to reject H₀: β₁ = 0 indicates no detectable linear relationship.</div></div>
+<div class="quiz" data-correct="3"><div class="q">Q4. Which is NOT an OLS assumption?</div><ul class="options"><li>Linearity</li><li>Independence of residuals</li><li>Equal variance</li><li>Residuals are uniform</li></ul><div class="explain"><b>Explanation:</b> Residuals should be approximately normal, not uniform.</div></div>
+
+    <h3 class="section-title"><span class="tag tag-short">Short Answers</span> Short-Answer Q&amp;A</h3>
+    <details><summary>Interpret the slope b₁ in business language.</summary><div class='ans'>For every unit increase in x, y is predicted to change by b₁ units, holding other factors constant; the sign indicates direction.</div></details><details><summary>What does R² measure?</summary><div class='ans'>The proportion of total variation in the dependent variable explained by the regression line; ranges 0–1, higher meaning better fit.</div></details><details><summary>List the four key assumptions of simple linear regression.</summary><div class='ans'>LINE — Linearity of the relationship, Independence of residuals, Normality of residuals, and Equal variance (homoscedasticity).</div></details><details><summary>Difference between correlation and regression.</summary><div class='ans'>Correlation (r) measures the strength and direction of a linear relationship between two variables; regression provides a predictive equation and quantifies how much y changes per unit x.</div></details>
+
+    <h3 class="section-title"><span class="tag tag-long">Long Answer</span> 150-Word Answer</h3>
+    <div class="long">Simple linear regression models the relationship between a single dependent variable y and a single independent variable x as a straight line ŷ = b₀ + b₁x. The intercept b₀ is the predicted value of y when x = 0; the slope b₁ tells us how much y is expected to change for each one-unit increase in x. Coefficients are estimated by ordinary least squares, which chooses b₀ and b₁ to minimise the sum of squared residuals SSE = Σ(y − ŷ)². The total variability in y, SST = Σ(y − ȳ)², is decomposed as SST = SSR + SSE, where SSR is the variability explained by the regression. The coefficient of determination R² = SSR/SST measures the fraction of variability explained; the standard error of the estimate s_yx measures typical prediction error. Significance of the linear relationship is tested via t = b₁/SE(b₁) with n − 2 degrees of freedom; the corresponding confidence interval expresses the slope&#x27;s uncertainty. Four classical assumptions must be checked — Linearity, Independence of residuals, Normality of residuals and Equal variance (LINE) — using residual plots and normal probability plots. Once validated, regression supports both estimation (mean response confidence interval at a given x) and prediction (wider interval for a new individual observation). The technique underpins sales forecasting, demand modelling, pricing analysis and almost all data-driven business decisions involving a quantitative driver and outcome.</div>
+
+    <div style="margin-top:24px;display:flex;gap:10px;justify-content:space-between">
+      <a class="btn btn-ghost" href="topic-chi-square.html">← Previous</a><a class="btn" href="index.html">↑ Course home</a><a class="btn btn-ghost" href="topic-non-parametric.html">Next →</a>
+    </div>
+  </div>
+</div></main>
+
+<footer><div class="container">Auto-generated by MBA Study Hub generator — last built 19 May 2026, 07:57 · <a href="../index.html">Back to Hub</a></div></footer>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{
+  const correct=parseInt(q.dataset.correct,10);
+  const explain=q.querySelector('.explain');
+  q.querySelectorAll('.options li').forEach((opt,idx)=>{
+    opt.addEventListener('click',()=>{
+      q.querySelectorAll('.options li').forEach(o=>{o.classList.remove('correct','wrong')});
+      if(idx===correct){opt.classList.add('correct')}
+      else{opt.classList.add('wrong'); q.querySelectorAll('.options li')[correct].classList.add('correct')}
+      if(explain){explain.classList.add('show')}
+    });
+  });
+});
+const sb=document.getElementById('search');
+if(sb){
+  sb.addEventListener('input',()=>{
+    const q=sb.value.trim().toLowerCase();
+    document.querySelectorAll('[data-search]').forEach(el=>{
+      const t=(el.dataset.search||'').toLowerCase();
+      el.style.display = (!q||t.includes(q))?'':'none';
+    });
+  });
+}
+</script>
+</body></html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marketing Management</title>
+<style>
+:root{
+  --bg:#0f172a;--surface:#fff;--panel:#f8fafc;--ink:#0f172a;--muted:#64748b;
+  --brand:#4f46e5;--brand-dark:#3730a3;--accent:#06b6d4;--ok:#16a34a;--warn:#f59e0b;
+  --danger:#dc2626;--card:#fff;--border:#e2e8f0;--shadow:0 4px 6px -1px rgba(0,0,0,0.07),0 2px 4px -1px rgba(0,0,0,0.05);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;color:var(--ink);background:#f1f5f9;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+header.site{background:linear-gradient(135deg,#4f46e5 0%,#06b6d4 100%);color:#fff;padding:48px 0 32px}
+header.site h1{margin:0 0 8px;font-size:2.4em;letter-spacing:-0.02em}
+header.site p{margin:0;opacity:0.92;max-width:680px;font-size:1.05em}
+nav.crumbs{background:var(--panel);border-bottom:1px solid var(--border);padding:12px 0;font-size:0.92em;color:var(--muted)}
+nav.crumbs a{color:var(--brand)}
+main{padding:36px 0 80px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:20px;border:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.tile{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;border:1px solid var(--border);transition:transform .15s,box-shadow .15s;display:block;color:inherit}
+.tile:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,0.12);text-decoration:none}
+.tile h3{margin:0 0 8px;font-size:1.18em}
+.tile .code{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:0.78em;color:var(--muted);margin-bottom:10px}
+.tile p{margin:8px 0 0;color:var(--muted);font-size:0.94em}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:0.78em;font-weight:600;background:var(--panel);border:1px solid var(--border);color:var(--ink);margin-right:6px}
+.tag-quiz{background:#dbeafe;color:#1e3a8a;border-color:#bfdbfe}
+.tag-short{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.tag-long{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.tag-paper{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.section-title{margin:32px 0 12px;font-size:1.45em;color:var(--ink);letter-spacing:-0.01em}
+h2.topic{margin:0 0 6px;font-size:1.55em;letter-spacing:-0.01em}
+.topic-meta{color:var(--muted);font-size:0.92em;margin-bottom:18px}
+.simple{font-size:1.05em;background:#eff6ff;padding:18px;border-left:4px solid var(--brand);border-radius:8px;margin-bottom:18px}
+.keypoints ul{margin:0;padding-left:22px}
+.keypoints li{margin:4px 0}
+.quiz{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:16px;margin:12px 0}
+.quiz .q{font-weight:600;margin-bottom:8px}
+.quiz .options{list-style:none;padding:0;margin:0 0 6px}
+.quiz .options li{padding:8px 12px;background:#fff;border:1px solid var(--border);border-radius:6px;margin:4px 0;cursor:pointer;font-size:0.96em;transition:background .12s}
+.quiz .options li:hover{background:#eef2ff}
+.quiz .options li.correct{background:#dcfce7;border-color:#86efac}
+.quiz .options li.wrong{background:#fee2e2;border-color:#fca5a5}
+.quiz .explain{color:var(--muted);font-size:0.9em;margin-top:6px;display:none}
+.quiz .explain.show{display:block}
+details{background:var(--panel);border-radius:8px;padding:0;margin:8px 0;border:1px solid var(--border)}
+details summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-size:1.2em;color:var(--muted)}
+details[open] summary::after{content:"−"}
+details .ans{padding:0 16px 14px;color:#334155}
+.long{background:#fefce8;border-left:4px solid var(--warn);border-radius:8px;padding:18px;margin:12px 0;line-height:1.7}
+.files-table{width:100%;border-collapse:collapse;margin:8px 0}
+.files-table th,.files-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:0.95em}
+.files-table th{background:var(--panel);color:var(--muted);font-weight:600;font-size:0.82em;text-transform:uppercase;letter-spacing:0.04em}
+.files-table tr:hover{background:#f8fafc}
+.kind{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:0.75em;color:var(--muted);font-weight:600}
+.fk-handout{background:#dbeafe;color:#1e3a8a;border-color:#bfdbfe}
+.fk-slide{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.fk-paper{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.fk-recording{background:#ede9fe;color:#5b21b6;border-color:#ddd6fe}
+.fk-exercise,.fk-data{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.toc{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px;margin:0 0 24px}
+.toc h4{margin:0 0 8px;font-size:0.92em;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted)}
+.toc ol{margin:0;padding-left:20px}
+.toc li{margin:3px 0}
+.searchbox{width:100%;padding:12px 16px;border-radius:8px;border:1px solid var(--border);font-size:1em;margin-bottom:16px;background:#fff}
+.searchbox:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(79,70,229,0.12)}
+.btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 18px;border-radius:8px;font-weight:600;transition:background .12s}
+.btn:hover{background:var(--brand-dark);text-decoration:none;color:#fff}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--panel)}
+.eval-table{width:100%;border-collapse:collapse}
+.eval-table th,.eval-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:0.95em;text-align:left}
+.eval-table th{background:var(--panel);font-size:0.82em;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted)}
+footer{padding:24px 0;color:var(--muted);font-size:0.88em;text-align:center;border-top:1px solid var(--border);margin-top:40px;background:#fff}
+.pill{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:4px 12px;font-size:0.84em;color:var(--muted);margin:2px 4px 2px 0}
+.fileset-summary{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.fileset-summary .pill strong{color:var(--ink)}
+@media (max-width:700px){
+  header.site h1{font-size:1.85em}
+  .container{padding:0 16px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="crumbs"><div class="container"><a href="../index.html">MBA Study Hub</a> › Marketing Management</div></nav>
+<header class="site"><div class="container">
+  <p style="opacity:.92;margin:0">MBA CC ZG503</p>
+  <h1>Marketing Management</h1>
+  <p>Core marketing strategy and practice — definition and scope, consumer and competitive behavior, segmentation-targeting-positioning (STP), product and brand management, pricing, distribution, promotion, market research and industrial marketing — applied to real Indian and global brands.</p>
+</div></header>
+<main><div class="container">
+
+  <div class="card">
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;justify-content:space-between">
+      <div style="flex:1;min-width:280px">
+        <h3 class="section-title" style="margin-top:0">Course at a glance</h3>
+        <p style="color:var(--muted);margin:4px 0 8px"><strong>Instructor:</strong> Prof. Sagar Venkateswar (WILP, BITS Pilani)</p>
+        <div class="fileset-summary"><span class='pill'><strong>1</strong> handouts</span><span class='pill'><strong>5</strong> slide/reading sets</span><span class='pill'><strong>2</strong> past papers</span><span class='pill'><strong>3</strong> recordings</span><span class='pill'><strong>0</strong> other files</span></div>
+        <p style="margin:10px 0 0"><a class="btn" href="files.html">Browse all files →</a> <a class="btn btn-ghost" href="papers.html">Past papers →</a></p>
+      </div>
+      <div style="flex:1;min-width:260px">
+        <h3 class="section-title" style="margin-top:0">Evaluation Scheme</h3>
+        <table class="eval-table"><thead><tr><th>EC</th><th>Component</th><th>Weight</th></tr></thead><tbody><tr><td>EC-1</td><td>Quizzes + Experiential Learning Assignments</td><td>25%</td></tr><tr><td>EC-2</td><td>Mid-Semester Test</td><td>30%</td></tr><tr><td>EC-3</td><td>Comprehensive Exam (Open Book)</td><td>45%</td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="section-title" style="margin-top:0">Quick access</h3>
+    <ul style="line-height:1.9"><li>Marketing Management (S2-25_MBACCZG503) COURSE HANDOUT.docx <span class='kind' style='font-size:.7em;color:#94a3b8'>local only</span> <span class='kind fk-handout'>handout</span></li><li>2025-2026_SEM_1_BC26_1-2025_MBACCZG503_MARKETING_MANAGEMENT_EC2_REGULAR_21-12-2025_AN.doc <span class='kind' style='font-size:.7em;color:#94a3b8'>local only</span> <span class='kind fk-paper'>paper</span></li><li>2025-2026_SEM_1_BC26_1-2025_MBACCZG503_MARKETING_MANAGEMENT_EC3_REGULAR_01-03-2026_AN.docx <span class='kind' style='font-size:.7em;color:#94a3b8'>local only</span> <span class='kind fk-paper'>paper</span></li></ul>
+    <h4 class="section-title" style="font-size:1em;margin-top:18px">Textbooks &amp; References</h4>
+    <ul style="margin:0"><li>Kotler, Keller, Koshy &amp; Jha — Marketing Management: A South Asian Perspective, 15e</li><li>Etzel, Walker, Stanton, Pandit — Marketing</li><li>Ramaswamy &amp; Namakumari — Marketing Management: Indian Context Global Perspective</li></ul>
+  </div>
+
+  <h3 class="section-title">Topics for Exam Prep</h3>
+  <input id="search" class="searchbox" placeholder="Search topics, concepts, keywords…" />
+  <div class="grid"><a class='tile' href='topic-intro-marketing.html' data-search='Definition and Scope of Marketing Definitions of marketing (AMA, Kotler) Needs vs Wants vs Demands Five marketing orientations: Production, Product, Selling, Marketing, Societal 4Ps of marketing (Product, Price, Place, Promotion) 7Ps for services (add People, Process, Physical Evidence) Marketing creates value: form, time, place, possession utility Holistic marketing concept (integrated, internal, relationship, performance)'><div class='code'>Session 1</div><h3>Definition and Scope of Marketing</h3><p>Marketing is the process by which firms create value for customers and build strong customer relationships in order to capture value in return. AMA definition: …</p><div style='margin-top:10px'><span class='tag tag-quiz'>4 quizzes</span><span class='tag tag-short'>4 short Qs</span><span class='tag tag-long'>150-word</span></div></a><a class='tile' href='topic-marketing-environment.html' data-search='Marketing Environment &amp; Consumer Behavior Microenvironment vs Macroenvironment PESTEL analysis (Political, Economic, Social, Technological, Environmental, Legal) Five-stage consumer buying decision process Four types of buying behaviour (Assael) Influences on consumer behavior: Cultural, Social, Personal, Psychological Maslow applied to marketing Black box / S-O-R model of consumer behavior Post-purchase: cognitive dissonance'><div class='code'>Session 2</div><h3>Marketing Environment &amp; Consumer Behavior</h3><p>The marketing environment consists of forces outside marketing that affect its ability to build customer relationships. Microenvironment: the company itself, su…</p><div style='margin-top:10px'><span class='tag tag-quiz'>4 quizzes</span><span class='tag tag-short'>4 short Qs</span><span class='tag tag-long'>150-word</span></div></a><a class='tile' href='topic-stp.html' data-search='Segmentation, Targeting and Positioning (STP) Segmentation bases: Geographic, Demographic, Psychographic, Behavioural MASDA criteria for effective segmentation Targeting strategies: Undifferentiated, Differentiated, Concentrated, Micromarketing Positioning statement template Perceptual / positioning maps Points of Parity (POP) vs Points of Difference (POD) Repositioning'><div class='code'>Session 3-4</div><h3>Segmentation, Targeting and Positioning (STP)</h3><p>STP is the strategic heart of marketing. Segmentation divides a heterogeneous market into smaller, more homogeneous groups. Bases: Geographic (region, city size…</p><div style='margin-top:10px'><span class='tag tag-quiz'>4 quizzes</span><span class='tag tag-short'>4 short Qs</span><span class='tag tag-long'>150-word</span></div></a><a class='tile' href='topic-product-brand.html' data-search='Product &amp; Brand Management Five product levels (Kotler) Consumer goods: convenience, shopping, specialty, unsought Product mix dimensions: width, length, depth, consistency Product Life Cycle (PLC) and stage-wise strategies NPD process (8 stages) Brand equity models: Aaker; Keller&#x27;s CBBE pyramid Brand strategies: line extension, brand extension, multi-brand, new brand, co-branding Packaging and labelling as silent salesmen'><div class='code'>Session 5</div><h3>Product &amp; Brand Management</h3><p>A product is anything offered to a market for attention, acquisition, use or consumption that satisfies a want or need. Five product levels (Kotler): Core benef…</p><div style='margin-top:10px'><span class='tag tag-quiz'>4 quizzes</span><span class='tag tag-short'>4 short Qs</span><span class='tag tag-long'>150-word</span></div></a><a class='tile' href='topic-pricing.html' data-search='Pricing Strategies &amp; Decisions 3 Cs of pricing: Customer value (ceiling), Competition, Cost (floor) Cost-plus and target-return pricing Value-based pricing (EVC — economic value to customer) Going-rate and sealed-bid (competition-based) Skimming vs Penetration pricing Captive-product and product-bundle pricing Psychological pricing; reference price; price-quality inference Dynamic and personalised pricing in the digital era'><div class='code'>Session 6</div><h3>Pricing Strategies &amp; Decisions</h3><p>Price is the amount of money charged for a product or service; the only element of the marketing mix that produces revenue (rest are costs). Setting price requi…</p><div style='margin-top:10px'><span class='tag tag-quiz'>4 quizzes</span><span class='tag tag-short'>4 short Qs</span><span class='tag tag-long'>150-word</span></div></a><a class='tile' href='topic-distribution.html' data-search='Channels of Distribution &amp; Supply Chain Five flows in a channel: physical, ownership, payment, information, promotion Channel functions: information, promotion, contact, matching, negotiation, physical distribution, financing, risk-taking Channel levels: 0, 1, 2, 3 Distribution intensity: Intensive, Selective, Exclusive Vertical Marketing Systems (Corporate, Contractual, Administered) Horizontal and multi-channel systems Channel conflict types and management Wholesaling vs retailing; emerging retail formats Logistics and Supply Chain Management'><div class='code'>Session 7</div><h3>Channels of Distribution &amp; Supply Chain</h3><p>Marketing channels are sets of interdependent organizations that help make a product or service available for consumption. They create five key flows: physical,…</p><div style='margin-top:10px'><span class='tag tag-quiz'>4 quizzes</span><span class='tag tag-short'>4 short Qs</span><span class='tag tag-long'>150-word</span></div></a><a class='tile' href='topic-promotion-imc.html' data-search='Promotion: Integrated Marketing Communications (IMC) Five tools of promotion mix Advertising types and AIDA model Sales promotion (consumer and trade) Personal selling and sales process (SPANCO/PROSPECT) PR and publicity Direct and digital marketing channels IMC: consistency across touchpoints Push vs Pull strategies Budget-setting: affordable, % of sales, competitive parity, objective-and-task Digital marketing funnel and metrics (CTR, CPC, CPA, ROAS)'><div class='code'>Session 8</div><h3>Promotion: Integrated Marketing Communications (IMC)</h3><p>Promotion (or marketing communication) is how the company informs, persuades and reminds consumers about its offerings. The promotion mix has five tools: Advert…</p><div style='margin-top:10px'><span class='tag tag-quiz'>4 quizzes</span><span class='tag tag-short'>4 short Qs</span><span class='tag tag-long'>150-word</span></div></a><a class='tile' href='topic-market-research-industrial.html' data-search='Market Research &amp; Industrial Marketing Marketing research process (6 steps) Primary vs secondary data Quantitative vs qualitative methods Sampling, questionnaire design, validity, reliability B2C vs B2B characteristics Derived demand and the accelerator effect Buying Centre roles (initiator, user, influencer, decider, approver, buyer, gatekeeper) Buying situations: New Task, Modified Rebuy, Straight Rebuy Industrial marketing strategies: relationship marketing, key account management'><div class='code'>Session 9</div><h3>Market Research &amp; Industrial Marketing</h3><p>Marketing Research is the systematic design, collection, analysis and reporting of data and findings relevant to a specific marketing situation. Process: Define…</p><div style='margin-top:10px'><span class='tag tag-quiz'>4 quizzes</span><span class='tag tag-short'>4 short Qs</span><span class='tag tag-long'>150-word</span></div></a></div>
+</div></main>
+
+<footer><div class="container">Auto-generated by MBA Study Hub generator — last built 19 May 2026, 07:57 · <a href="../index.html">Back to Hub</a></div></footer>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{
+  const correct=parseInt(q.dataset.correct,10);
+  const explain=q.querySelector('.explain');
+  q.querySelectorAll('.options li').forEach((opt,idx)=>{
+    opt.addEventListener('click',()=>{
+      q.querySelectorAll('.options li').forEach(o=>{o.classList.remove('correct','wrong')});
+      if(idx===correct){opt.classList.add('correct')}
+      else{opt.classList.add('wrong'); q.querySelectorAll('.options li')[correct].classList.add('correct')}
+      if(explain){explain.classList.add('show')}
+    });
+  });
+});
+const sb=document.getElementById('search');
+if(sb){
+  sb.addEventListener('input',()=>{
+    const q=sb.value.trim().toLowerCase();
+    document.querySelectorAll('[data-search]').forEach(el=>{
+      const t=(el.dataset.search||'').toLowerCase();
+      el.style.display = (!q||t.includes(q))?'':'none';
+    });
+  });
+}
+</script>
+</body></html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Definition and Scope of Marketing — Marketing Management</title>
+<style>
+:root{
+  --bg:#0f172a;--surface:#fff;--panel:#f8fafc;--ink:#0f172a;--muted:#64748b;
+  --brand:#4f46e5;--brand-dark:#3730a3;--accent:#06b6d4;--ok:#16a34a;--warn:#f59e0b;
+  --danger:#dc2626;--card:#fff;--border:#e2e8f0;--shadow:0 4px 6px -1px rgba(0,0,0,0.07),0 2px 4px -1px rgba(0,0,0,0.05);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;color:var(--ink);background:#f1f5f9;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+header.site{background:linear-gradient(135deg,#4f46e5 0%,#06b6d4 100%);color:#fff;padding:48px 0 32px}
+header.site h1{margin:0 0 8px;font-size:2.4em;letter-spacing:-0.02em}
+header.site p{margin:0;opacity:0.92;max-width:680px;font-size:1.05em}
+nav.crumbs{background:var(--panel);border-bottom:1px solid var(--border);padding:12px 0;font-size:0.92em;color:var(--muted)}
+nav.crumbs a{color:var(--brand)}
+main{padding:36px 0 80px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:20px;border:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.tile{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;border:1px solid var(--border);transition:transform .15s,box-shadow .15s;display:block;color:inherit}
+.tile:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,0.12);text-decoration:none}
+.tile h3{margin:0 0 8px;font-size:1.18em}
+.tile .code{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:0.78em;color:var(--muted);margin-bottom:10px}
+.tile p{margin:8px 0 0;color:var(--muted);font-size:0.94em}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:0.78em;font-weight:600;background:var(--panel);border:1px solid var(--border);color:var(--ink);margin-right:6px}
+.tag-quiz{background:#dbeafe;color:#1e3a8a;border-color:#bfdbfe}
+.tag-short{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.tag-long{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.tag-paper{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.section-title{margin:32px 0 12px;font-size:1.45em;color:var(--ink);letter-spacing:-0.01em}
+h2.topic{margin:0 0 6px;font-size:1.55em;letter-spacing:-0.01em}
+.topic-meta{color:var(--muted);font-size:0.92em;margin-bottom:18px}
+.simple{font-size:1.05em;background:#eff6ff;padding:18px;border-left:4px solid var(--brand);border-radius:8px;margin-bottom:18px}
+.keypoints ul{margin:0;padding-left:22px}
+.keypoints li{margin:4px 0}
+.quiz{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:16px;margin:12px 0}
+.quiz .q{font-weight:600;margin-bottom:8px}
+.quiz .options{list-style:none;padding:0;margin:0 0 6px}
+.quiz .options li{padding:8px 12px;background:#fff;border:1px solid var(--border);border-radius:6px;margin:4px 0;cursor:pointer;font-size:0.96em;transition:background .12s}
+.quiz .options li:hover{background:#eef2ff}
+.quiz .options li.correct{background:#dcfce7;border-color:#86efac}
+.quiz .options li.wrong{background:#fee2e2;border-color:#fca5a5}
+.quiz .explain{color:var(--muted);font-size:0.9em;margin-top:6px;display:none}
+.quiz .explain.show{display:block}
+details{background:var(--panel);border-radius:8px;padding:0;margin:8px 0;border:1px solid var(--border)}
+details summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-size:1.2em;color:var(--muted)}
+details[open] summary::after{content:"−"}
+details .ans{padding:0 16px 14px;color:#334155}
+.long{background:#fefce8;border-left:4px solid var(--warn);border-radius:8px;padding:18px;margin:12px 0;line-height:1.7}
+.files-table{width:100%;border-collapse:collapse;margin:8px 0}
+.files-table th,.files-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:0.95em}
+.files-table th{background:var(--panel);color:var(--muted);font-weight:600;font-size:0.82em;text-transform:uppercase;letter-spacing:0.04em}
+.files-table tr:hover{background:#f8fafc}
+.kind{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1px 7px;font-size:0.75em;color:var(--muted);font-weight:600}
+.fk-handout{background:#dbeafe;color:#1e3a8a;border-color:#bfdbfe}
+.fk-slide{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.fk-paper{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.fk-recording{background:#ede9fe;color:#5b21b6;border-color:#ddd6fe}
+.fk-exercise,.fk-data{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.toc{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px;margin:0 0 24px}
+.toc h4{margin:0 0 8px;font-size:0.92em;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted)}
+.toc ol{margin:0;padding-left:20px}
+.toc li{margin:3px 0}
+.searchbox{width:100%;padding:12px 16px;border-radius:8px;border:1px solid var(--border);font-size:1em;margin-bottom:16px;background:#fff}
+.searchbox:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(79,70,229,0.12)}
+.btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 18px;border-radius:8px;font-weight:600;transition:background .12s}
+.btn:hover{background:var(--brand-dark);text-decoration:none;color:#fff}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--panel)}
+.eval-table{width:100%;border-collapse:collapse}
+.eval-table th,.eval-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:0.95em;text-align:left}
+.eval-table th{background:var(--panel);font-size:0.82em;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted)}
+footer{padding:24px 0;color:var(--muted);font-size:0.88em;text-align:center;border-top:1px solid var(--border);margin-top:40px;background:#fff}
+.pill{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:4px 12px;font-size:0.84em;color:var(--muted);margin:2px 4px 2px 0}
+.fileset-summary{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.fileset-summary .pill strong{color:var(--ink)}
+@media (max-width:700px){
+  header.site h1{font-size:1.85em}
+  .container{padding:0 16px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="crumbs"><div class="container"><a href="../index.html">MBA Study Hub</a> › <a href="index.html">Marketing Management</a> › Topic</div></nav>
+<header class="site"><div class="container">
+  <p style="margin:0;opacity:.92">Session 1 · MBA CC ZG503</p>
+  <h1>Definition and Scope of Marketing</h1>
+</div></header>
+<main><div class="container">
+  <div class="card">
+    <h3 class="section-title" style="margin-top:0">In Simple Language</h3>
+    <div class="simple">Marketing is the process by which firms create value for customers and build strong customer relationships in order to capture value in return. AMA definition: &#x27;the activity, set of institutions and processes for creating, communicating, delivering and exchanging offerings that have value for customers, clients, partners and society at large.&#x27; Core concepts: Needs (basic requirements — food, security), Wants (specific form of need shaped by culture and personality — biryani vs pasta), Demand (wants backed by purchasing power). Marketing evolved through five orientations: Production, Product, Selling, Marketing, and Societal Marketing. The Marketing Mix (McCarthy&#x27;s 4Ps — Product, Price, Place, Promotion) is the tactical toolkit; services add 3 more (People, Process, Physical Evidence = 7Ps). Marketing creates form, time, place, and possession utility.</div>
+
+    <h3 class="section-title">Key Concepts</h3>
+    <div class="keypoints"><ul><li>Definitions of marketing (AMA, Kotler)</li><li>Needs vs Wants vs Demands</li><li>Five marketing orientations: Production, Product, Selling, Marketing, Societal</li><li>4Ps of marketing (Product, Price, Place, Promotion)</li><li>7Ps for services (add People, Process, Physical Evidence)</li><li>Marketing creates value: form, time, place, possession utility</li><li>Holistic marketing concept (integrated, internal, relationship, performance)</li></ul></div>
+
+    <h3 class="section-title"><span class="tag tag-quiz">Quiz</span> Practice Quiz</h3>
+    <div class="quiz" data-correct="1"><div class="q">Q1. Wants are:</div><ul class="options"><li>Basic human requirements</li><li>Needs shaped by personality and culture</li><li>Wants backed by purchasing power</li><li>Demand fulfilment</li></ul><div class="explain"><b>Explanation:</b> Same need (hunger) → different wants (pizza/biryani) by culture.</div></div>
+<div class="quiz" data-correct="1"><div class="q">Q2. Selling orientation focuses on:</div><ul class="options"><li>Customer needs</li><li>Pushing what is produced via aggressive promotion</li><li>Society&#x27;s long-term welfare</li><li>Product innovation</li></ul><div class="explain"><b>Explanation:</b> Selling concept assumes consumers will not buy enough unless aggressively sold.</div></div>
+<div class="quiz" data-correct="1"><div class="q">Q3. The 4Ps include:</div><ul class="options"><li>Product, Price, Place, People</li><li>Product, Price, Place, Promotion</li><li>Product, Price, Promotion, Process</li><li>Product, Promotion, Process, Physical Evidence</li></ul><div class="explain"><b>Explanation:</b> Classic McCarthy 4Ps for goods.</div></div>
+<div class="quiz" data-correct="3"><div class="q">Q4. Which orientation considers ethics and social impact?</div><ul class="options"><li>Production</li><li>Product</li><li>Marketing</li><li>Societal Marketing</li></ul><div class="explain"><b>Explanation:</b> Societal Marketing balances customer needs, company profit and societal well-being.</div></div>
+
+    <h3 class="section-title"><span class="tag tag-short">Short Answers</span> Short-Answer Q&amp;A</h3>
+    <details><summary>Differentiate needs, wants and demands.</summary><div class='ans'>Needs are basic human requirements (food, shelter, safety). Wants are specific forms of needs shaped by culture and individuality (a need for food becomes a want for biryani). Demands are wants backed by purchasing power and willingness to buy.</div></details><details><summary>List the four marketing mix elements (4Ps).</summary><div class='ans'>Product (offering and benefits), Price (what customer pays), Place (distribution and channels), Promotion (communication: ads, sales promotion, PR, personal selling).</div></details><details><summary>Compare Selling and Marketing concepts.</summary><div class='ans'>Selling starts with the factory, focuses on existing products and uses aggressive promotion to push sales — emphasis on the seller&#x27;s needs. Marketing starts with the customer, focuses on identifying needs and producing integrated marketing to satisfy them profitably — emphasis on the buyer&#x27;s needs.</div></details><details><summary>Define Societal Marketing.</summary><div class='ans'>An orientation in which the company&#x27;s task is to determine the needs and wants of target markets and deliver desired satisfactions more effectively than competitors in a way that preserves or enhances the consumer&#x27;s and society&#x27;s well-being (e.g. green packaging, fair sourcing).</div></details>
+
+    <h3 class="section-title"><span class="tag tag-long">Long Answer</span> 150-Word Answer</h3>
+    <div class="long">Marketing is the comprehensive process by which organizations create value for customers and build profitable, lasting customer relationships in order to capture value in return. The American Marketing Association defines it as the activity, set of institutions and processes for creating, communicating, delivering and exchanging offerings that have value for customers, clients, partners and society at large. Three core concepts anchor the field. Needs are the basic states of felt deprivation shared by all humans — food, shelter, safety, belonging. Wants are the specific forms that needs take when shaped by culture, personality and context — the same hunger that produces a want for noodles in Tokyo produces a want for chole bhature in Delhi. Demands are wants backed by purchasing power and the willingness to buy. Marketing thinking has evolved through five orientations. The Production concept (1900s) assumes consumers prefer widely available, low-cost products; the Product concept assumes they favour the highest quality and features; the Selling concept (1930s–40s) assumes consumers will not buy enough unless aggressively pushed; the Marketing concept (post-1950s) starts with customer needs and integrates the organization to meet them profitably; the Societal Marketing concept (1970s onwards) extends this by also serving society&#x27;s long-term welfare. The Marketing Mix, popularised as McCarthy&#x27;s 4Ps, is the tactical toolkit — Product, Price, Place and Promotion — that managers blend to deliver the firm&#x27;s value proposition. Service businesses extend this to 7Ps by adding People, Process and Physical Evidence, recognising that intangibility, inseparability and variability matter. Marketing ultimately creates four kinds of utility — form (transforming inputs into desired products), time (making them available when needed), place (making them available where needed) and possession (transferring ownership and after-sales support) — and is therefore central to value creation in any economy.</div>
+
+    <div style="margin-top:24px;display:flex;gap:10px;justify-content:space-between">
+      <a class="btn" href="index.html">↑ Course home</a><a class="btn btn-ghost" href="topic-marketing-environment.html">Next →</a>
+    </div>
+  </div>
+</div></main>
+
+<footer><div class="container">Auto-generated by MBA Study Hub generator — last built 19 May 2026, 07:57 · <a href="../index.html">Back to Hub</a></div></footer>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{
+  const correct=parseInt(q.dataset.correct,10);
+  const explain=q.querySelector('.explain');
+  q.querySelectorAll('.options li').forEach((opt,idx)=>{
+    opt.addEventListener('click',()=>{
+      q.querySelectorAll('.options li').forEach(o=>{o.classList.remove('correct','wrong')});
+      if(idx===correct){opt.classList.add('correct')}
+      else{opt.classList.add('wrong'); q.querySelectorAll('.options li')[correct].classList.add('correct')}
+      if(explain){explain.classList.add('show')}
+    });
+  });
+});
+const sb=document.getElementById('search');
+if(sb){
+  sb.addEventListener('input',()=>{
+    const q=sb.value.trim().toLowerCase();
+    document.querySelectorAll('[data-search]').forEach(el=>{
+      const t=(el.dataset.search||'').toLowerCase();
+      el.style.display = (!q||t.includes(q))?'':'none';
+    });
+  });
+}
+</script>
+</body></html>
